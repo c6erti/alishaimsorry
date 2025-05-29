@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Message</title>
+    <style>
+        body {
+            background-color: #111;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Courier New', monospace;
+            color: #ff3366;
+            text-align: center;
+        }
+        
+        .heart {
+            font-size: 24px;
+            line-height: 1.3;
+            margin: 20px 0;
+            white-space: pre;
+        }
+        
+        .message {
+            font-size: 2em;
+            margin: 20px;
+            text-shadow: 0 0 10px #ff3366;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="heart" id="heart"></div>
+    <div class="message">ALISHA MY LOVE</div>
+    <div class="message">I'M SORRY</div>
+    <div class="message">Please forgive me</div>
+
+    <script>
+        // Proper heart shapes
+        const hearts = [
+            "  ♥♥♥   ♥♥♥  ",
+            " ♥   ♥ ♥   ♥ ",
+            "♥     ♥     ♥",
+            "♥           ♥",
+            " ♥         ♥ ",
+            "  ♥       ♥  ",
+            "   ♥     ♥   ",
+            "    ♥   ♥    ",
+            "     ♥ ♥     ",
+            "      ♥      "
+        ];
+
+        const heartElement = document.getElementById('heart');
+        let currentLine = 0;
+        
+        function drawHeart() {
+            if (currentLine < hearts.length) {
+                heartElement.innerHTML += hearts[currentLine] + '<br>';
+                currentLine++;
+                setTimeout(drawHeart, 200);
+            } else {
+                setTimeout(() => {
+                    heartElement.innerHTML = '';
+                    currentLine = 0;
+                    setTimeout(drawHeart, 500);
+                }, 2000);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', drawHeart);
+    </script>
+</body>
+</html>
